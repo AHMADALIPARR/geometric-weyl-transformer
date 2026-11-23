@@ -1,0 +1,44 @@
+-- This file is part of Geometric Weyl Transformer.
+-- Copyright (C) 2026 AHMAD ALI PARR / SnapKitty Research Lab
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU Affero General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU Affero General Public License for more details.
+--
+-- You should have received a copy of the GNU Affero General Public License
+-- along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+README.md
+app/Main.hs
+cabal.project
+conformal-weyl-fedosov.cabal
+docs/MODULE_MAP.md
+docs/NUMERICAL_BACKEND.md
+docs/RESEARCH_BOUNDARIES.md
+lean/CWF.lean
+lean/CWF/Algebra.lean
+lean/CWF/Conformal.lean
+lean/CWF/Fedosov.lean
+lean/CWF/Symplectic.lean
+lean/lakefile.lean
+lean/lean-toolchain
+src/ConformalWeyl/Conformal.hs
+src/ConformalWeyl/ConformalTransport.hs
+src/ConformalWeyl/Cotangent.hs
+src/ConformalWeyl/Curvature.hs
+src/ConformalWeyl/CurvatureCoupling.hs
+src/ConformalWeyl/Fedosov.hs
+src/ConformalWeyl/StarProduct.hs
+src/ConformalWeyl/SymplecticConnection.hs
+src/ConformalWeyl/Tensor.hs
+src/ConformalWeyl/Validation.hs
+src/ConformalWeyl/WeylAlgebra.hs
+src/ConformalWeyl/WignerMoyal.hs
+test/Spec.hs

@@ -1,0 +1,53 @@
+-- This file is part of Geometric Weyl Transformer.
+-- Copyright (C) 2026 AHMAD ALI PARR / SnapKitty Research Lab
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU Affero General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU Affero General Public License for more details.
+--
+-- You should have received a copy of the GNU Affero General Public License
+-- along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+cabal-version: 3.0
+name: conformal-weyl-fedosov
+version: 0.1.0.0
+build-type: Simple
+
+library
+  exposed-modules:
+      ConformalWeyl.Tensor
+      ConformalWeyl.Conformal
+      ConformalWeyl.Curvature
+      ConformalWeyl.Cotangent
+      ConformalWeyl.SymplecticConnection
+      ConformalWeyl.WeylAlgebra
+      ConformalWeyl.Fedosov
+      ConformalWeyl.CurvatureCoupling
+      ConformalWeyl.ConformalTransport
+      ConformalWeyl.StarProduct
+      ConformalWeyl.WignerMoyal
+      ConformalWeyl.Validation
+  hs-source-dirs: src
+  build-depends: base >=4.16 && <5, containers
+  default-language: Haskell2010
+  ghc-options: -Wall -Wcompat
+
+executable cwf-demo
+  main-is: Main.hs
+  hs-source-dirs: app
+  build-depends: base >=4.16 && <5, conformal-weyl-fedosov
+  default-language: Haskell2010
+
+test-suite cwf-tests
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs: test
+  build-depends: base >=4.16 && <5, conformal-weyl-fedosov
+  default-language: Haskell2010
