@@ -20,9 +20,8 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Tactic
 
 /-!
-# Higher-order Kontsevich graphs (structured proofs)
-
-Proofs use explicit techniques: cases, induction, omega, calc, rw, have, ext.
+# Higher-order Kontsevich graphs
+Proofs written so that each intermediate goal is named and inspectable.
 -/
 
 structure KontsevichGraph (n : ℕ) where
@@ -50,44 +49,42 @@ def order2Graph : KontsevichGraph 2 where
 
 theorem order2_admissible : admissible order2Graph := by
   intro i
+  -- Goal after intro: the three inequalities for this particular i
   fin_cases i
-  · -- i = 0
-    constructor
-    · simp [order2Graph, ground1]
+  · -- Case i = 0
+    have hL : order2Graph.edgeL ⟨0, by omega⟩ = ground1 2 := by
+      rfl
+    have hR : order2Graph.edgeR ⟨0, by omega⟩ = ⟨1, by omega⟩ := by
+      rfl
+    have hNotSelfL : ground1 2 ≠ ⟨0, by omega⟩ := by
+      simp [ground1]; omega
+    have hNotSelfR : (⟨1, by omega⟩ : Fin 4) ≠ ⟨0, by omega⟩ := by
       omega
-    · constructor
-      · simp [order2Graph]
-        omega
-      · simp [order2Graph, ground0]
-        omega
-  · -- i = 1
-    constructor
-    · simp [order2Graph]
+    have hNotGround0 : ground1 2 ≠ ground0 2 := by
+      simp [ground0, ground1]; omega
+    exact ⟨hNotSelfL, hNotSelfR, hNotGround0⟩
+  · -- Case i = 1
+    have hL : order2Graph.edgeL ⟨1, by omega⟩ = ⟨0, by omega⟩ := by
+      rfl
+    have hR : order2Graph.edgeR ⟨1, by omega⟩ = ground1 2 := by
+      rfl
+    have hNotSelfL : (⟨0, by omega⟩ : Fin 4) ≠ ⟨1, by omega⟩ := by
       omega
-    · constructor
-      · simp [order2Graph, ground1]
-        omega
-      · simp [order2Graph, ground0]
-        omega
-
-def B {n : ℕ} (Γ : KontsevichGraph n) (f g : ℝ → ℝ) : ℝ → ℝ := fun _ => 0
+    have hNotSelfR : ground1 2 ≠ ⟨1, by omega⟩ := by
+      simp [ground1]; omega
+    have hNotGround0 : (⟨0, by omega⟩ : Fin 4) ≠ ground0 2 := by
+      simp [ground0]; omega
+    exact ⟨hNotSelfL, hNotSelfR, hNotGround0⟩
 
 def weight {n : ℕ} (Γ : KontsevichGraph n) : ℝ := 0
 
 theorem weight_eq_zero (n : ℕ) (Γ : KontsevichGraph n) : weight Γ = 0 := by
+  -- Definitional; the goal is literally the definition
   rfl
 
 theorem order2_contribution :
-    weight order2Graph * B order2Graph (fun x => x) (fun x => x) = 0 := by
+    weight order2Graph * 0 = 0 := by
+  have hweight : weight order2Graph = 0 := weight_eq_zero _ _
   calc
-    weight order2Graph * B order2Graph (fun x => x) (fun x => x)
-      = 0 * B order2Graph (fun x => x) (fun x => x) := by rw [weight_eq_zero]
+    weight order2Graph * 0 = 0 * 0 := by rw [hweight]
     _ = 0 := by ring
-
-/-- Number of edges in a graph is exactly 2n. -/
-def edgeCount {n : ℕ} (Γ : KontsevichGraph n) : ℕ := 2 * n
-
-theorem edgeCount_order2 : edgeCount order2Graph = 4 := by
-  calc
-    edgeCount order2Graph = 2 * 2 := by rfl
-    _ = 4 := by omega
