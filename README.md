@@ -307,9 +307,9 @@ The Fedosov layer supplies fiber algebra, graded homotopy primitives, and a filt
 
 In a conventional Fedosov presentation, fiber coordinates $y^i$ and a formal Weyl product accompany differential forms, a symplectic connection, and a correction one-form. A frequently used schematic connection form is
 
-$$
+
 D=-\delta+\nabla+\frac{1}{\hbar}\operatorname{ad}_{\circ}(r),
-$$
+
 
 with convention-dependent factors of $i$, signs, and curvature terms. This is **background mathematical structure**, not an assertion that all ingredients of a global curved model have been supplied here.
 
