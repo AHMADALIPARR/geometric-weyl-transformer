@@ -4,6 +4,7 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/AHMADALIPARR/geometric-weyl-transformer)](https://github.com/AHMADALIPARR/geometric-weyl-transformer)
 [![GitHub last commit](https://img.shields.io/github/last-commit/AHMADALIPARR/geometric-weyl-transformer)](https://github.com/AHMADALIPARR/geometric-weyl-transformer/commits/main)
 [![CI](https://github.com/AHMADALIPARR/geometric-weyl-transformer/actions/workflows/ci.yml/badge.svg)](https://github.com/AHMADALIPARR/geometric-weyl-transformer/actions/workflows/ci.yml)
+[![DOI](https://img.shields.io/badge/DOI-10.57967%2Fhf%2F11918-blue)](https://doi.org/10.57967/hf/11918)
 
 **Differential Geometry · Conformal Curvature · Symplectic Geometry · Deformation Quantization · Formal Verification**
 
@@ -64,6 +65,7 @@ Files under `lean/` that import Mathlib (for example `ConfigurationProof.lean` a
 17. [Visual Reference and Attribution](#17-visual-reference-and-attribution)
 18. [Terminology and Scope](#18-terminology-and-scope)
 - [Contributors](#contributors)
+- [Provenance](#provenance)
 
 ---
 
@@ -646,3 +648,16 @@ The architecture offers a precise separation between computationally available l
 |---|---|
 | [@AHMADALIPARR](https://github.com/AHMADALIPARR) | Author and maintainer — the hand-written README, the twelve-module architecture, the Lean CWF library |
 | [@SNAPKITTYWEST](https://github.com/SNAPKITTYWEST) | Project status badges (PR #1) |
+
+---
+
+## Provenance
+
+The Weyl exceptional zeta certificates were produced on the author's local machine and are published as a Hugging Face dataset.
+
+- Dataset: [Snapkitty/weyl-exceptional-zeta](https://huggingface.co/datasets/Snapkitty/weyl-exceptional-zeta)
+- DOI: [10.57967/hf/11918](https://doi.org/10.57967/hf/11918)
+
+Only certain code is public on GitHub; this repository is the public subset of the work.
+
+A reproduction of the certificates is currently being created.
