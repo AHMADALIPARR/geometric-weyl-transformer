@@ -16,6 +16,10 @@ jobs:
         with:
           ghc-version: '9.4.7'
           cabal-version: '3.8'
+      - name: Refresh package index
+        run: |
+          rm -rf "$HOME/.cabal/packages"
+          cabal update
       - name: Build
         run: cabal build all
       - name: Test
