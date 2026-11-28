@@ -659,3 +659,5 @@ The Weyl exceptional zeta certificates were produced on the author's local machi
 - DOI: [10.57967/hf/11918](https://doi.org/10.57967/hf/11918)
 
 Only certain code is public on GitHub; this repository is the public subset of the work.
+
+A reproduction of the certificates is currently being created.
