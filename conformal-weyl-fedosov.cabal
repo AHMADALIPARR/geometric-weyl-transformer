@@ -18,6 +18,10 @@ cabal-version: 3.0
 
 name: conformal-weyl-fedosov
 version: 0.1.0.0
+synopsis: Conformal Weyl-Fedosov deformation architecture
+description: Haskell + Lean 4 research implementation of conformal Weyl
+  deformation quantization, with symbolic polynomial and numerical backends.
+license: AGPL-3.0-only
 build-type: Simple
 
 library
