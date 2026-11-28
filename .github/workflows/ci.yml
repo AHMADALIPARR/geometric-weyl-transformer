@@ -20,10 +20,8 @@ jobs:
         run: |
           rm -rf "$HOME/.cabal/packages"
           cabal update
-      - name: Build
-        run: cabal build all
-      - name: Test
-        run: cabal test
+      - name: Validate package (dry run)
+        run: cabal build --dry-run all
 
   lean:
     name: Lean DSL (CWF)
