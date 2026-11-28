@@ -10,6 +10,29 @@ Haskell + Lean 4 research implementation, with symbolic polynomial and numerical
 
 > **Scope.** A buildable computational foundation and research scaffold for a twelve-module architecture. The implemented flat-space and polynomial models are distinguished throughout from the unresolved curved, conformally covariant deformation problem.
 
+## Custom project setup
+
+This is a custom project: Haskell (Cabal) plus Lean 4 (Lake), with no Python, no external computer algebra system, and no network service at runtime. The Lean side is dependency-free by design.
+
+### Lean project
+
+The Lean project lives in `lean/` and is defined by two files:
+
+- `lean/lakefile.lean` — `open Lake DSL`, `package «cwf» where version := v!"0.1.0"`, and `lean_lib CWF`. Zero dependencies are declared.
+- `lean/lean-toolchain` — pins `leanprover/lean4:v4.19.0`.
+
+The CWF library is self-contained. `lean/CWF/Algebra.lean` carries zero import lines: lines 1–16 are the AGPL-3.0 copyright header, line 18 opens `namespace CWF`, and lines 20–42 define `AssocAlgebra`, the `⋆` infix operator, and prove `star_assoc`, `star_left_unit`, and `star_right_unit` using only Lean 4's built-in core prelude. No Mathlib, no external Lean packages.
+
+Build the Lean library with the library target, not a bare `lake build` (which only compiles the lakefile itself):
+
+```bash
+cd lean
+lake build CWF
+```
+
+Files under `lean/` that import Mathlib (for example `ConfigurationProof.lean` and `DeformationQuantization.lean`) are **not** part of the CWF library build — `lean/CWF.lean` imports only `CWF.Algebra`, `CWF.Conformal`, `CWF.Symplectic`, and `CWF.Fedosov` — so they are not built by `lake build CWF`.
+
+
 <p align="center">
   <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hermann_Weyl_ETH-Bib_Portr_00890.jpg" alt="Historical photograph of mathematician Hermann Weyl" width="220" />
 </p>
@@ -20,6 +43,7 @@ Haskell + Lean 4 research implementation, with symbolic polynomial and numerical
 
 ## Table of Contents
 
+- [Custom project setup](#custom-project-setup)
 1. [Technical Overview](#1-technical-overview)
 2. [Status and Mathematical Boundary](#2-status-and-mathematical-boundary)
 3. [System Architecture](#3-system-architecture)
@@ -423,6 +447,8 @@ The repository includes a Wigner transform for sampled one-dimensional wavefunct
 
 The Lean directory contains definitions and proofs of abstract algebraic laws that can be shown independently of the unresolved geometric coupling. A checked proof has force only for the exact definitions and hypotheses appearing in its theorem statement.
 
+The CWF library (`lean/CWF.lean`, `lean/CWF/`) is self-contained and dependency-free; see [Custom project setup](#custom-project-setup). `lean/CWF/Algebra.lean` has zero import lines and uses only Lean 4's core prelude.
+
 ### Proof coverage matrix
 
 | Verification domain | Appropriate theorem form | Evidentiary boundary |
@@ -492,7 +518,7 @@ The architecture intentionally separates exact symbolic computation from sampled
 |---|---|---|
 | GHC | 9.2+ | Haskell compilation |
 | Cabal | 3.8+ | Dependency and project build |
-| Lean 4 / Lake | Compatible project toolchain | Formal definitions and proofs |
+| Lean 4 / Lake | `leanprover/lean4:v4.19.0`, package `«cwf»` v0.1.0, `lean_lib CWF`, zero dependencies | Formal definitions and proofs |
 | Python | Not required | No Python runtime dependency |
 | External CAS | Not required at runtime | Symbolic work stays local |
 | Network service | Not required at runtime | No hosted computational service |
@@ -506,7 +532,7 @@ cabal test
 cabal run cwf-demo
 
 cd lean
-lake build
+lake build CWF
 ```
 
 `cabal update` refreshes package metadata and ordinarily needs a network connection unless a suitable local index is already available. The claim of no **runtime** network service does not make dependency provisioning automatically offline.
@@ -518,7 +544,7 @@ lake build
 | `cabal build all` | Compile Cabal components |
 | `cabal test` | Run deterministic Haskell tests |
 | `cabal run cwf-demo` | Run symbolic/numeric flat-space demonstration |
-| `lake build` | Build Lean declarations and proofs |
+| `lake build CWF` | Build the CWF Lean library (declarations and proofs) |
 
 ## 15. Testing and Reproducibility
 
