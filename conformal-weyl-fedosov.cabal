@@ -1,3 +1,4 @@
+cabal-version: 3.0
 -- This file is part of Geometric Weyl Transformer.
 -- Copyright (C) 2026 AHMAD ALI PARR / SnapKitty Research Lab
 --
@@ -15,7 +16,6 @@
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-cabal-version: 3.0
 name: conformal-weyl-fedosov
 version: 0.1.0.0
 build-type: Simple
