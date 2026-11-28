@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  haskell:
+    name: Haskell kernels
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: haskell/actions/setup@v2
+        with:
+          ghc-version: '9.4.7'
+          cabal-version: '3.8'
+      - name: Refresh package index
+        run: |
+          rm -rf "$HOME/.cabal/packages"
+          cabal update
+      - name: Build
+        run: cabal build all
+      - name: Test
+        run: cabal test
+
+  lean:
+    name: Lean DSL (CWF)
+    runs-on: ubuntu-latest
+    env:
+      ELAN_TOOLCHAIN: leanprover/lean4:v4.19.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan + Lean 4.19.0
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.19.0
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build CWF library
+        run: |
+          cd lean
+          lake build CWF

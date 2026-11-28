@@ -18,14 +18,14 @@
 namespace CWF
 
 /-- A Poisson bracket interface; Jacobi is an explicit axiom of the structure. -/
-structure PoissonAlgebra (A : Type) where
+structure PoissonAlgebra (A : Type) [Add A] [Zero A] where
   bracket : A → A → A
   jacobi : ∀ f g h,
     bracket (bracket f g) h +
     bracket (bracket g h) f +
     bracket (bracket h f) g = 0
 
-theorem poisson_jacobi {A : Type} (P : PoissonAlgebra A)
+theorem poisson_jacobi {A : Type} [Add A] [Zero A] (P : PoissonAlgebra A)
     (f g h : A) :
     P.bracket (P.bracket f g) h +
     P.bracket (P.bracket g h) f +

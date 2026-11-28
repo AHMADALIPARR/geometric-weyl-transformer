@@ -32,11 +32,11 @@ theorem star_assoc {A : Type} [AssocAlgebra A] (a b c : A) :
   AssocAlgebra.assoc a b c
 
 theorem star_left_unit {A : Type} [AssocAlgebra A] (a : A) :
-    (1 : A) ⋆ a = a :=
+    AssocAlgebra.one ⋆ a = a :=
   AssocAlgebra.one_mul a
 
 theorem star_right_unit {A : Type} [AssocAlgebra A] (a : A) :
-    a ⋆ (1 : A) = a :=
+    a ⋆ AssocAlgebra.one = a :=
   AssocAlgebra.mul_one a
 
 end CWF
