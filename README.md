@@ -62,6 +62,7 @@ Files under `lean/` that import Mathlib (for example `ConfigurationProof.lean` a
 16. [Research Obligations](#16-research-obligations)
 17. [Visual Reference and Attribution](#17-visual-reference-and-attribution)
 18. [Terminology and Scope](#18-terminology-and-scope)
+- [Contributors](#contributors)
 
 ---
 
@@ -633,3 +634,14 @@ Technical Mermaid and ASCII diagrams in this README are explanatory architecture
 ### Closing statement
 
 The architecture offers a precise separation between computationally available local geometry, symbolic deformation quantization, numerical phase-space analysis, and formal algebraic reasoning. Its central open question—nontrivial, conformally covariant Weyl-curvature coupling within a defensible Fedosov construction—remains explicitly outside the established results. This separation is a feature of the research design: it makes the available computations reproducible while leaving the exact missing theorems visible.
+
+---
+
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=AHMADALIPARR/geometric-weyl-transformer)](https://github.com/AHMADALIPARR/geometric-weyl-transformer/graphs/contributors)
+
+| Contributor | Contribution |
+|---|---|
+| [@AHMADALIPARR](https://github.com/AHMADALIPARR) | Author and maintainer — the hand-written README, the twelve-module architecture, the Lean CWF library |
+| [@SNAPKITTYWEST](https://github.com/SNAPKITTYWEST) | Project status badges (PR #1) |
