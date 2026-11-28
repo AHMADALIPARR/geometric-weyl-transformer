@@ -12,10 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: haskell/actions/setup@v2
-        with:
-          ghc-version: '9.4.7'
-          cabal-version: '3.8'
+      - name: Install GHC and Cabal
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ghc cabal-install
+          ghc --version
+          cabal --version
       - name: Refresh package index
         run: |
           rm -rf "$HOME/.cabal/packages"
