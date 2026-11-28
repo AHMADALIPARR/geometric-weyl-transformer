@@ -36,7 +36,7 @@ theorem fedosov_product_assoc {A : Type} (F : FedosovData A)
 /-- The Weyl-curvature coupling remains an explicit, unproved input. -/
 structure WeylCouplingCandidate where
   phaseDimension : Nat
-  components : Fin phaseDimension → Fin phaseDimension → ℝ
+  components : Fin phaseDimension → Fin phaseDimension → Float
   closed : Prop
   closedProof : closed
   conformalCovariance : Prop

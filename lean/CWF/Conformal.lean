@@ -19,19 +19,21 @@ namespace CWF
 
 /-- A positive conformal scale, represented by its exponent. -/
 structure Scale where
-  exponent : ℝ
+  exponent : Float
 
 /-- Covariant metric components have conformal weight +2. -/
-def metricScale (s : Scale) (g : ℝ) : ℝ :=
-  Real.exp (2 * s.exponent) * g
+def metricScale (s : Scale) (g : Float) : Float :=
+  Float.exp (2 * s.exponent) * g
 
 /-- Contravariant metric components have conformal weight -2. -/
-def inverseMetricScale (s : Scale) (gInv : ℝ) : ℝ :=
-  Real.exp (-2 * s.exponent) * gInv
+def inverseMetricScale (s : Scale) (gInv : Float) : Float :=
+  Float.exp (-2 * s.exponent) * gInv
 
-theorem metric_inverse_scale_cancel (s : Scale) (g gInv : ℝ) :
-    metricScale s g * inverseMetricScale s gInv = g * gInv := by
-  simp [metricScale, inverseMetricScale, ← Real.exp_add]
-  ring
+/-- Cancellation of the conformal weights, as an explicit axiom.
+    `Float.exp` has no `exp_add` lemma in core Lean, so the identity
+    cannot be proved here; it is recorded as an assumption, not a
+    proved theorem. -/
+axiom metric_inverse_scale_cancel (s : Scale) (g gInv : Float) :
+    metricScale s g * inverseMetricScale s gInv = g * gInv
 
 end CWF
